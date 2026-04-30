@@ -65,8 +65,9 @@
   .phase ul { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); }
 
   /* Tiers */
-  .tiers { display: grid; grid-template-columns: 1fr 1.05fr 1fr; gap: 14px; margin: 22px 0; }
-  @media (max-width: 720px) { .tiers { grid-template-columns: 1fr; } }
+  .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 22px 0; }
+  @media (max-width: 1100px) { .tiers { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .tiers { grid-template-columns: 1fr; } }
   .tier { background: white; border: 1px solid var(--rule); padding: 22px 20px; display: flex; flex-direction: column; }
   .tier.pro { border: 2px solid var(--accent); position: relative; }
   .tier.pro::before { content: "Recomendado"; position: absolute; top: -10px; left: 16px; background: var(--accent); color: white; font-size: 10px; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
@@ -109,17 +110,13 @@
     </div>
   </header>
 
-  <p class="lead">Tu RFI cierra con una conclusión que vale la pena leer dos veces: <em>"Ningún CRM ejecutará este modelo Out-of-the-Box"</em>. La pregunta entonces no es cuál CRM compras, sino cómo construyes la capa de governance que tu firma necesita encima del stack correcto. Esta propuesta plantea ese camino, con tres opciones de alcance para que ajustemos al apetito real del proyecto.</p>
+  <p class="lead">El RFI que armaron es claro y describe muy bien el sistema que necesita la firma. Este documento plantea cómo lo construiríamos juntos, con un punto de entrada chico para validar antes de comprometerse al alcance grande.</p>
 
   <h2><span class="num">01</span>Diagnóstico</h2>
 
-  <p>La matriz de 23 requerimientos describe algo más exigente que un CRM: una arquitectura de Pipeline de Valor Auditado con relojes maestros, gates documentales, freeze codes, killswitches, comisiones step-down multianuales, y un audit trail forense capaz de resolver disputas internas. Ese sistema no se compra, se diseña.</p>
+  <p>La matriz describe una arquitectura de Pipeline de Valor Auditado: relojes maestros, gates documentales, freeze codes, killswitches, comisiones step-down multianuales y audit trail forense. Es bastante específica al modelo de la firma, así que hace mucho sentido pensar en construirla a la medida en lugar de apretar 23 reglas a un CRM enterprise.</p>
 
-  <p>Los CRMs comparados en tu matriz (Zoho, HubSpot, Bitrix24, Pipedrive, SalesNexus, Monday, RD Station, Odoo) cumplen entre 40% y 70% de los requerimientos críticos. Los que mejor califican (Zoho Enterprise, Odoo Enterprise) llegan ahí solo con 4 a 8 semanas de consultoría externa, scripts custom y conexiones de middleware. Y aún así dejan brechas duras: reloj pausable, freeze code, SLA Ghosting Index, integración con Jaak.</p>
-
-  <div class="callout">
-    <strong>Lectura:</strong> el RFI no es una decisión de compra de software. Es una decisión de implementación. La inversión real está en el diseño del workflow y la automatización, no en el license fee.
-  </div>
+  <p>Los CRMs que compararon (Zoho, HubSpot, Bitrix24, Pipedrive, SalesNexus, Monday, RD Station, Odoo) cumplen entre 40% y 70% de los puntos críticos, y los más cercanos (Zoho Enterprise, Odoo Enterprise) llegan ahí con 4–8 semanas de consultoría externa y scripts adicionales. Eso ustedes ya lo levantaron en el doc, así que el approach que propongo sale de esa misma lectura.</p>
 
   <h2><span class="num">02</span>Stack propuesto</h2>
 
@@ -143,8 +140,6 @@
       <p>MS Teams (notificaciones, webhooks). Jaak (validación KYC vía REST API). Sistema contable (Pay-When-Paid, conciliación). Google/Microsoft (calendario, drive, docs).</p>
     </div>
   </div>
-
-  <p class="quote">Construir custom sobre Notion + n8n + agentes no es un compromiso barato; es la forma de obtener exactamente la lógica de tu firma sin pagar la cuenta de un Salesforce y sin renunciar a las brechas duras del RFI.</p>
 
   <h2><span class="num">03</span>Cómo el stack cubre los 23 requerimientos</h2>
 
@@ -204,17 +199,32 @@
     </div>
   </div>
 
-  <h2><span class="num">05</span>Inversión · tres opciones de alcance</h2>
+  <h2><span class="num">05</span>Cómo arrancamos · de lo chico a lo grande</h2>
 
-  <p>El RFI cubre 23 funcionalidades de profundidad muy variable. No todas son críticas en la fase 1. Estas tres opciones permiten arrancar con lo que mueve la aguja y crecer por capas según ROI demostrado.</p>
+  <p>La idea es no pedirles que decidan el alcance completo el día uno. Empezamos con un Discovery acotado que ya entrega valor por sí solo (especificación funcional + schema operable en Notion con datos de prueba). Si en ese punto deciden cotizar con alguien más, se quedan con la spec lista y no perdieron nada. Si quieren seguir, pasamos al tier que les haga sentido.</p>
 
   <div class="tiers">
+
+    <div class="tier pro">
+      <div class="t-name">Discovery</div>
+      <div class="t-tag">Punto de entrada · 1.5 sem</div>
+      <p class="t-price"><span class="currency">USD</span>2,800</p>
+      <div class="t-mxn">≈ MXN $48,000</div>
+      <ul class="t-bullets">
+        <li>Sesiones con Dirección y Operaciones</li>
+        <li>Especificación funcional firmada</li>
+        <li>Schema base operable en Notion con datos demo</li>
+        <li>Plan de evolución a 3 fases</li>
+        <li>Si después prefieren otro vendor, la spec se queda con ustedes</li>
+      </ul>
+      <div class="t-foot">Lo recomendado para empezar. De aquí decidimos juntos qué tier sigue, o si tiene sentido seguir.</div>
+    </div>
 
     <div class="tier">
       <div class="t-name">Núcleo</div>
       <div class="t-tag">Pipeline operativo · 5 semanas</div>
       <p class="t-price"><span class="currency">USD</span>12,800</p>
-      <div class="t-mxn">≈ MXN $218,000 · al tipo de cambio actual</div>
+      <div class="t-mxn">≈ MXN $218,000</div>
       <ul class="t-bullets">
         <li>Schema completo en Notion (Sales + Delivery + Documentos)</li>
         <li>Multi-Marca y consolidación corporativa</li>
@@ -231,11 +241,11 @@
       <div class="t-foot">Ideal para validar el modelo y empezar a operar. Las funcionalidades omitidas se pueden incorporar en una fase 2 con el sistema ya en producción.</div>
     </div>
 
-    <div class="tier pro">
+    <div class="tier">
       <div class="t-name">Completo</div>
       <div class="t-tag">23 requerimientos · 8 semanas</div>
       <p class="t-price"><span class="currency">USD</span>22,500</p>
-      <div class="t-mxn">≈ MXN $383,000 · al tipo de cambio actual</div>
+      <div class="t-mxn">≈ MXN $383,000</div>
       <ul class="t-bullets">
         <li>Todo lo del tier Núcleo</li>
         <li>Reloj pausable + freeze code + SLA Ghosting Index</li>
@@ -256,7 +266,7 @@
       <div class="t-name">Hardened</div>
       <div class="t-tag">Completo + soporte · 8 sem + 3 meses</div>
       <p class="t-price"><span class="currency">USD</span>32,000</p>
-      <div class="t-mxn">≈ MXN $544,000 · al tipo de cambio actual</div>
+      <div class="t-mxn">≈ MXN $544,000</div>
       <ul class="t-bullets">
         <li>Todo lo del tier Completo</li>
         <li>Migración de datos históricos (deals abiertos + cerrados)</li>
@@ -275,14 +285,20 @@
 
   <div class="price-line">
     <div>
-      <div class="what">Núcleo o Completo: 50% al firmar SOW, 50% al go-live</div>
-      <div class="who">Pago en USD vía SPEI a través de Wise / Lightspark · o MXN equivalente con factura</div>
+      <div class="what">Discovery: 100% por adelantado al confirmar arranque</div>
+      <div class="who">Tres mil dólares aprox. · sirve también para abrir relación contractual</div>
     </div>
   </div>
   <div class="price-line">
     <div>
-      <div class="what">Hardened: 40% al firmar, 40% al go-live, 20% en cuotas mensuales (mes 1, 2, 3)</div>
-      <div class="who">El retainer se prepaga con los últimos 20%</div>
+      <div class="what">Núcleo o Completo: 40% al firmar SOW, 40% en hito intermedio, 20% al go-live</div>
+      <div class="who">Pagos parciales para que el cashflow no cargue todo al inicio</div>
+    </div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">Hardened: 30% al firmar, 30% al go-live, 40% en cuotas (mes 1, 2, 3, 4)</div>
+      <div class="who">El retainer se prepaga con los últimos 40%</div>
     </div>
   </div>
   <div class="price-line">
@@ -291,6 +307,12 @@
       <div class="who">Si prefieren no fijar precio, tarifa de USD $105/hora con cap acordado por fase</div>
     </div>
     <div class="amt">USD 105/h</div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">Moneda y facturación</div>
+      <div class="who">USD vía Wise / SPEI internacional · o MXN equivalente con factura mexicana al tipo de cambio del día</div>
+    </div>
   </div>
 
   <h3>Retainer mensual post go-live (opcional, si toman Núcleo o Completo)</h3>
@@ -315,73 +337,7 @@
     <div class="amt">~USD 200/mes</div>
   </div>
 
-  <div class="callout">
-    <strong>Contingencia:</strong> los tres tiers incluyen un buffer del 10% en horas para alcance no previsto durante Discovery. Cambios fuera del SOW se cotizan por separado a la tarifa T&M.
-  </div>
-
-  <h2><span class="num">06</span>Benchmarks de mercado</h2>
-
-  <p>Estos rangos vienen de directorios públicos y blog posts de consultores reconocidos. La idea no es justificar el precio, sino dar contexto comparativo para que la conversación sobre alcance se ancle en datos.</p>
-
-  <table>
-    <thead>
-      <tr><th>Categoría</th><th>Rate por hora</th><th>Proyecto típico</th><th>Fuente</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Notion senior consultancy</td>
-        <td>USD 100–200</td>
-        <td>USD 15k–25k+ (custom + integraciones)</td>
-        <td class="src"><a href="https://notionmastery.com/guide-to-hiring-notion-consultants/">Notion Mastery</a> · <a href="https://cjwray.com/notion-consultant-pricing/">CJ Wray</a></td>
-      </tr>
-      <tr>
-        <td>Notion business OS build (6–12 sem)</td>
-        <td>—</td>
-        <td>USD 6k–12k</td>
-        <td class="src"><a href="https://cjwray.com/notion-consultant-pricing/">CJ Wray</a></td>
-      </tr>
-      <tr>
-        <td>n8n freelance senior</td>
-        <td>USD 50–150</td>
-        <td>varía por workflow</td>
-        <td class="src"><a href="https://www.upwork.com/hire/n8n-experts/">Upwork</a> · <a href="https://www.toptal.com/developers/n8n">Toptal</a></td>
-      </tr>
-      <tr>
-        <td>AI implementation senior</td>
-        <td>USD 150–300 (mid) · USD 300–500 (senior)</td>
-        <td>USD 10k–50k</td>
-        <td class="src"><a href="https://www.orientsoftware.com/blog/ai-consultant-hourly-rate/">Orient Software</a> · <a href="https://stack.expert/blog/ai-consultant-salary-pricing-guide-for-2025">Stack Expert 2026</a></td>
-      </tr>
-      <tr>
-        <td>CRM custom (rango total mercado)</td>
-        <td>—</td>
-        <td>USD 30k–250k+</td>
-        <td class="src"><a href="https://www.spaceotechnologies.com/blog/custom-crm-development-cost/">SpaceO Tech</a></td>
-      </tr>
-      <tr>
-        <td>Software custom (Clutch, promedio)</td>
-        <td>USD 100–149</td>
-        <td>USD 132k promedio</td>
-        <td class="src"><a href="https://clutch.co/developers/pricing">Clutch.co</a></td>
-      </tr>
-      <tr>
-        <td>Senior tech consultant México</td>
-        <td>USD 50–130</td>
-        <td>—</td>
-        <td class="src"><a href="https://www.curotec.com/insights/latam-developer-hourly-rates-in-2025/">Curotec</a> · <a href="https://www.index.dev/blog/latam-developer-hourly-rates">Index.dev</a></td>
-      </tr>
-      <tr>
-        <td>Retainer mensual AI consultant</td>
-        <td>—</td>
-        <td>USD 2k–10k/mes</td>
-        <td class="src"><a href="https://stack.expert/blog/ai-consultant-salary-pricing-guide-for-2025">Stack Expert 2026</a></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="src">Fuentes consultadas en abril 2026. Los rangos varían por geografía, seniority y profundidad del scope. NotionOps se ubica en el cuartil bajo–medio del mercado norteamericano y arriba del promedio LATAM por la combinación de stack diferenciado (Notion + n8n + AI) y vertical knowledge en mercados de carbono.</p>
-
-  <h2><span class="num">07</span>Plan de implementación</h2>
+  <h2><span class="num">06</span>Plan de implementación</h2>
 
   <div class="timeline">
     <div class="phase">
@@ -454,16 +410,17 @@
     </div>
   </div>
 
-  <h2><span class="num">08</span>Próximo paso</h2>
+  <h2><span class="num">07</span>Próximo paso</h2>
 
-  <p>Una llamada de 30 minutos esta semana para alinear contexto que no quedó cubierto en el RFI: tamaño del equipo BD, volumen actual de deals, criticidad de la fecha de go-live, restricciones de stack del lado de TI/Compliance, y elección de tier.</p>
+  <p>Una llamada de 30 minutos esta semana para alinear contexto que no quedó cubierto en el RFI: tamaño del equipo BD, volumen actual de deals, criticidad de la fecha de go-live, restricciones de stack del lado de TI/Compliance. De ahí decidimos si arrancar con Discovery o si necesitan tiempo para revisar internamente.</p>
 
-  <p>Si el alcance hace sentido, firmamos un SOW corto y arrancamos Discovery la semana siguiente.</p>
+  <p>Si el approach les hace sentido, lo natural es arrancar con Discovery (1.5 semanas) y a partir de ahí decidir el tier.</p>
 
   <footer>
     <p>NotionOps · Pedro Rojas Campuzano · Ciudad de México</p>
     <p>pedro.rojas.campuzano@gmail.com · +52 55 9186 1118 · linkedin.com/in/pedro-rojas-campuzano</p>
     <p>Esta propuesta es válida por 30 días desde la fecha de emisión. Tipos de cambio MXN/USD calculados a 17.0 pesos/dólar; los pagos se ajustan al tipo de cambio del día.</p>
+    <p style="margin-top: 12px;"><a href="benchmarks.html" style="color: var(--ink-soft); font-size: 11.5px;">Anexo · referencias de tarifas de mercado</a></p>
   </footer>
 </div>
 </body>
