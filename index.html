@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Pipeline de Valor Auditado · Propuesta para Dua NetZero / EcoforestCO2</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --rule: #d6d3cd;
+    --bg: #faf9f6;
+    --accent: #1f3d2e;
+    --accent-soft: #e8efe9;
+    --warn: #b8693f;
+    --warn-soft: #f7ece4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: "Inter", "Helvetica Neue", -apple-system, system-ui, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body { padding: 64px 24px 96px; }
+  .doc { max-width: 820px; margin: 0 auto; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 28px; margin-bottom: 40px; }
+  header .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  header h1 { font-family: "Source Serif Pro", "Georgia", serif; font-size: 36px; line-height: 1.15; margin: 8px 0 6px; font-weight: 600; letter-spacing: -0.01em; }
+  header .sub { font-size: 16px; color: var(--ink-soft); }
+  header .meta { display: flex; gap: 24px; margin-top: 18px; font-size: 13px; color: var(--ink-soft); flex-wrap: wrap; }
+  header .meta span strong { color: var(--ink); font-weight: 600; }
+
+  h2 { font-family: "Source Serif Pro", Georgia, serif; font-size: 22px; margin: 48px 0 14px; font-weight: 600; letter-spacing: -0.005em; }
+  h2 .num { color: var(--accent); margin-right: 10px; font-variant-numeric: tabular-nums; }
+  h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin: 28px 0 10px; font-weight: 600; }
+  p { margin: 10px 0; }
+  ul { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lead { font-size: 17px; color: var(--ink); }
+
+  .callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 16px 18px; margin: 18px 0; font-size: 14px; }
+  .callout strong { color: var(--accent); }
+  .callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+  .callout.warn strong { color: var(--warn); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 18px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin: 18px 0; }
+  @media (max-width: 720px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  .card { background: white; border: 1px solid var(--rule); padding: 18px 20px; }
+  .card h4 { margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+  .card p { margin: 4px 0; font-size: 14px; color: var(--ink-soft); }
+
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 13.5px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td.req { font-weight: 500; width: 32%; }
+  td.fit { width: 22%; color: var(--accent); font-weight: 500; }
+  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; letter-spacing: 0.02em; }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+
+  .timeline { margin: 18px 0; }
+  .phase { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .phase:last-child { border-bottom: 0; }
+  .phase .p-num { font-family: "Source Serif Pro", Georgia, serif; font-size: 22px; color: var(--accent); }
+  .phase h4 { margin: 0 0 4px; font-size: 15px; }
+  .phase .week { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+  .phase ul { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); }
+
+  /* Tiers */
+  .tiers { display: grid; grid-template-columns: 1fr 1.05fr 1fr; gap: 14px; margin: 22px 0; }
+  @media (max-width: 720px) { .tiers { grid-template-columns: 1fr; } }
+  .tier { background: white; border: 1px solid var(--rule); padding: 22px 20px; display: flex; flex-direction: column; }
+  .tier.pro { border: 2px solid var(--accent); position: relative; }
+  .tier.pro::before { content: "Recomendado"; position: absolute; top: -10px; left: 16px; background: var(--accent); color: white; font-size: 10px; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .tier .t-name { font-family: "Source Serif Pro", Georgia, serif; font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+  .tier .t-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 14px; }
+  .tier .t-price { font-family: "Source Serif Pro", Georgia, serif; font-size: 28px; font-weight: 600; color: var(--accent); margin: 0; line-height: 1.1; }
+  .tier .t-price .currency { font-size: 14px; vertical-align: top; margin-right: 2px; color: var(--ink-soft); font-weight: 400; }
+  .tier .t-mxn { font-size: 12px; color: var(--ink-soft); margin-bottom: 16px; }
+  .tier .t-bullets { list-style: none; padding: 0; margin: 0 0 16px; font-size: 13px; }
+  .tier .t-bullets li { margin: 6px 0; padding-left: 20px; position: relative; color: var(--ink); }
+  .tier .t-bullets li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+  .tier .t-bullets li.no { color: var(--ink-soft); }
+  .tier .t-bullets li.no::before { content: "−"; color: var(--rule); }
+  .tier .t-foot { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--rule); font-size: 12px; color: var(--ink-soft); }
+
+  .price-line { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 14px; gap: 16px; }
+  .price-line .what { color: var(--ink); flex: 1; }
+  .price-line .who { color: var(--ink-soft); font-size: 12.5px; }
+  .price-line .amt { font-family: "Source Serif Pro", Georgia, serif; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  .src { font-size: 11.5px; color: var(--ink-soft); }
+  .src a { color: var(--ink-soft); text-decoration: underline; }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-soft); }
+  footer p { margin: 4px 0; }
+  .quote { font-family: "Source Serif Pro", Georgia, serif; font-size: 15px; color: var(--ink-soft); border-left: 2px solid var(--rule); padding-left: 16px; margin: 14px 0; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="doc">
+  <header>
+    <div class="label">Propuesta de implementación</div>
+    <h1>Pipeline de Valor Auditado</h1>
+    <div class="sub">Sistema operativo CRM custom para Dua NetZero y EcoforestCO2</div>
+    <div class="meta">
+      <span><strong>Para:</strong> Rafa Alonso</span>
+      <span><strong>De:</strong> Pedro Rojas Campuzano · NotionOps</span>
+      <span><strong>Fecha:</strong> 30 de abril de 2026</span>
+      <span><strong>Vigencia:</strong> 30 días</span>
+    </div>
+  </header>
+
+  <p class="lead">Tu RFI cierra con una conclusión que vale la pena leer dos veces: <em>"Ningún CRM ejecutará este modelo Out-of-the-Box"</em>. La pregunta entonces no es cuál CRM compras, sino cómo construyes la capa de governance que tu firma necesita encima del stack correcto. Esta propuesta plantea ese camino, con tres opciones de alcance para que ajustemos al apetito real del proyecto.</p>
+
+  <h2><span class="num">01</span>Diagnóstico</h2>
+
+  <p>La matriz de 23 requerimientos describe algo más exigente que un CRM: una arquitectura de Pipeline de Valor Auditado con relojes maestros, gates documentales, freeze codes, killswitches, comisiones step-down multianuales, y un audit trail forense capaz de resolver disputas internas. Ese sistema no se compra, se diseña.</p>
+
+  <p>Los CRMs comparados en tu matriz (Zoho, HubSpot, Bitrix24, Pipedrive, SalesNexus, Monday, RD Station, Odoo) cumplen entre 40% y 70% de los requerimientos críticos. Los que mejor califican (Zoho Enterprise, Odoo Enterprise) llegan ahí solo con 4 a 8 semanas de consultoría externa, scripts custom y conexiones de middleware. Y aún así dejan brechas duras: reloj pausable, freeze code, SLA Ghosting Index, integración con Jaak.</p>
+
+  <div class="callout">
+    <strong>Lectura:</strong> el RFI no es una decisión de compra de software. Es una decisión de implementación. La inversión real está en el diseño del workflow y la automatización, no en el license fee.
+  </div>
+
+  <h2><span class="num">02</span>Stack propuesto</h2>
+
+  <p>En lugar de forzar tus 23 requerimientos a un CRM enterprise, propongo construir el Pipeline de Valor Auditado nativo sobre tres componentes que se acomodan a la arquitectura, no al revés:</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>Notion (capa de datos y UI)</h4>
+      <p>Bases relacionales para Sales Pipeline, Delivery Pipeline, Cuentas, Contactos, Documentos, Comisiones. Vistas separadas por brand (Dua NetZero / EcoforestCO2) con consolidación corporativa. Audit trail nativo a nivel de campo.</p>
+    </div>
+    <div class="card">
+      <h4>n8n (motor de automatización)</h4>
+      <p>Workflows que ejecutan los relojes, killswitches, afirmativa ficta, freeze codes, alertas de estancamiento, degradación de probabilidad y SLA Ghosting Index. Webhooks para integraciones externas.</p>
+    </div>
+    <div class="card">
+      <h4>Agentes Claude (capa cognitiva)</h4>
+      <p>Generación documental autónoma de Minutas BANT, NDA y SOW desde plantillas con datos del sistema. Validación cruzada UAT. Resúmenes ejecutivos para el Weekly Sync. Agentes de cobranza para SLA Ghosting.</p>
+    </div>
+    <div class="card">
+      <h4>Integraciones puntuales</h4>
+      <p>MS Teams (notificaciones, webhooks). Jaak (validación KYC vía REST API). Sistema contable (Pay-When-Paid, conciliación). Google/Microsoft (calendario, drive, docs).</p>
+    </div>
+  </div>
+
+  <p class="quote">Construir custom sobre Notion + n8n + agentes no es un compromiso barato; es la forma de obtener exactamente la lógica de tu firma sin pagar la cuenta de un Salesforce y sin renunciar a las brechas duras del RFI.</p>
+
+  <h2><span class="num">03</span>Cómo el stack cubre los 23 requerimientos</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Requerimiento</th>
+        <th>Componente</th>
+        <th>Cómo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="req">1. Multi-Marca y Consolidación</td><td class="fit">Notion</td><td>Workspaces o teamspaces separados por brand con dashboards consolidados a nivel corporativo.</td></tr>
+      <tr><td class="req">2. Embudos Múltiples (Sales / Delivery)</td><td class="fit">Notion</td><td>DBs independientes con relación cruzada controlada y reglas de visibilidad por rol.</td></tr>
+      <tr><td class="req">3. Bloqueos de Etapa (Gates Documentales)</td><td class="fit">n8n + Notion</td><td>Validación pre-transición que verifica adjuntos requeridos (Anexo A, BANT, NDA, SOW) antes de permitir el avance.</td></tr>
+      <tr><td class="req">4. Afirmativa Ficta (SLA 72h)</td><td class="fit">n8n</td><td>Cron + comparación de timestamps. Cambia owner y status si Dirección no actúa en 72h.</td></tr>
+      <tr><td class="req">5. Alertas de Estancamiento (45/90)</td><td class="fit">n8n</td><td>Workflows programados con notificación Teams + email a los 45d y caducidad automática a los 90d.</td></tr>
+      <tr><td class="req">6. Reloj Maestro (Killswitch 180d)</td><td class="fit">n8n</td><td>Cron que evalúa fecha de originación y cierra como Closed Lost al día 180.</td></tr>
+      <tr><td class="req">7. Reloj Pausable (revisión legal)</td><td class="fit">n8n</td><td>Campo "días pausados" que se incrementa cuando el deal entra a etapas legales y se descuenta del cómputo.</td></tr>
+      <tr><td class="req">8. Freeze Code (revocar permisos)</td><td class="fit">n8n + Notion API</td><td>Cambio programático del rol del usuario a solo lectura cuando incumple SLAs.</td></tr>
+      <tr><td class="req">9. Degradación de Probabilidad</td><td class="fit">n8n</td><td>Workflow que actualiza el campo de probabilidad cuando un deal supera X días en Stalled.</td></tr>
+      <tr><td class="req">10. Auditoría Cruzada UAT</td><td class="fit">Notion</td><td>Campo restringido editable únicamente por el rol Operaciones; bloquea solicitud de pago hasta marcado.</td></tr>
+      <tr><td class="req">11. Bloqueo Fiscal Pay-When-Paid</td><td class="fit">n8n + Sistema Contable</td><td>Validación previa al alta de pago: el sistema rechaza si el cobro al cliente no está conciliado.</td></tr>
+      <tr><td class="req">12. SLA Ghosting Index</td><td class="fit">n8n + Agente Claude</td><td>Cronómetro de 5 días que escala morosidad y degrada nivel de comisión; agente sugiere acciones de cobranza.</td></tr>
+      <tr><td class="req">13. Botón del Pánico / Override</td><td class="fit">Notion</td><td>Campos booleanos restringidos a Administración para autorizar excepciones.</td></tr>
+      <tr><td class="req">14. Cálculo de Fee Base (Step-Down)</td><td class="fit">n8n</td><td>Motor de cálculo con tabuladores y step-down multianual sobre TCV; resultados escritos al CRM y al sistema contable.</td></tr>
+      <tr><td class="req">15. Densidad de Contacto</td><td class="fit">n8n</td><td>Conteo de actividades vs días en etapa; reasignación automática cuando cae bajo umbral.</td></tr>
+      <tr><td class="req">16. Readiness</td><td class="fit"><span class="pill">5–8 semanas</span></td><td>Discovery acelerado + entrega por fases (ver Sección 06).</td></tr>
+      <tr><td class="req">17. Integración MS Teams</td><td class="fit">n8n</td><td>Webhooks bidireccionales para alertas, comandos slash y aprobaciones desde canales.</td></tr>
+      <tr><td class="req">18. Integración Jaak (KYC)</td><td class="fit">n8n</td><td>Conexión REST API con webhook de respuesta; el deal se mueve a "KYC Aprobado" o "KYC Bloqueado".</td></tr>
+      <tr><td class="req">19. Audit Trail Forense</td><td class="fit">Notion + n8n</td><td>Audit trail nativo de Notion + tabla de log adicional con razón del cambio en campos críticos.</td></tr>
+      <tr><td class="req">20. Generación Documental Autónoma</td><td class="fit">Agente Claude</td><td>Plantillas DOCX/PDF con merge de variables; output inalterable en Drive con link en el deal.</td></tr>
+      <tr><td class="req">21. Tablero de Control</td><td class="fit">Notion</td><td>Dashboards nativos con vistas por rol; opción de embebido a Looker Studio si se requiere drill-down avanzado.</td></tr>
+      <tr><td class="req">22. Forecast de Venta</td><td class="fit">Notion + n8n</td><td>Campo fórmula que multiplica TCV por probabilidad de etapa, con vista consolidada por brand.</td></tr>
+      <tr><td class="req">23. Cálculo de Comisiones</td><td class="fit">n8n + Sistema Contable</td><td>Motor que aplica Nivel 1/2/3 + step-down y emite reporte de liquidación al sistema de nómina.</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">04</span>Por qué NotionOps</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>Industria que entiendo</h4>
+      <p>Lideré implementación de proyectos de créditos de carbono en el norte de México. Verra (VCS), Climate Action Reserve (CAR), due diligence con compradores corporativos, reporte a steering committees ejecutivos. Hablo el lenguaje de Net Zero advisory.</p>
+    </div>
+    <div class="card">
+      <h4>Stack que ejecuto</h4>
+      <p>NotionOps construyó el deal flow + CRM completo de CenterPoint Business Advisors (M&A, EE.UU.): pipelines de oportunidades, sincronía de correo/calendario/Drive automatizada con n8n, dashboards directivos. Es exactamente la base que tu firma necesita.</p>
+    </div>
+    <div class="card">
+      <h4>Independiente</h4>
+      <p>Salí de Semantiks como tiempo completo el 27 de abril. Sigo como canal de venta de su plataforma de agentes, pero esta implementación entra por NotionOps: yo soy el responsable directo, sin intermediarios ni traspasos.</p>
+    </div>
+    <div class="card">
+      <h4>Diferencial AI nativo</h4>
+      <p>Diseño y mantengo sistemas personales de IA en producción: RAG sobre 13,000+ documentos, ~70 agentes custom, orquestación multi-agente con Claude. La capa de agentes no es promesa, es práctica diaria.</p>
+    </div>
+  </div>
+
+  <h2><span class="num">05</span>Inversión · tres opciones de alcance</h2>
+
+  <p>El RFI cubre 23 funcionalidades de profundidad muy variable. No todas son críticas en la fase 1. Estas tres opciones permiten arrancar con lo que mueve la aguja y crecer por capas según ROI demostrado.</p>
+
+  <div class="tiers">
+
+    <div class="tier">
+      <div class="t-name">Núcleo</div>
+      <div class="t-tag">Pipeline operativo · 5 semanas</div>
+      <p class="t-price"><span class="currency">USD</span>12,800</p>
+      <div class="t-mxn">≈ MXN $218,000 · al tipo de cambio actual</div>
+      <ul class="t-bullets">
+        <li>Schema completo en Notion (Sales + Delivery + Documentos)</li>
+        <li>Multi-Marca y consolidación corporativa</li>
+        <li>Gates documentales (BANT, NDA, SOW, Anexo A)</li>
+        <li>Killswitch 180d, alertas 45d/90d, afirmativa ficta 72h</li>
+        <li>Botón del Pánico / Override</li>
+        <li>Audit trail nativo + dashboards por brand</li>
+        <li>Forecast de venta con fórmulas</li>
+        <li>Capacitación + documentación operativa</li>
+        <li class="no">Sin reloj pausable, freeze code, SLA Ghosting</li>
+        <li class="no">Sin agentes Claude (gen documental manual)</li>
+        <li class="no">Sin integraciones MS Teams / Jaak / contable</li>
+      </ul>
+      <div class="t-foot">Ideal para validar el modelo y empezar a operar. Las funcionalidades omitidas se pueden incorporar en una fase 2 con el sistema ya en producción.</div>
+    </div>
+
+    <div class="tier pro">
+      <div class="t-name">Completo</div>
+      <div class="t-tag">23 requerimientos · 8 semanas</div>
+      <p class="t-price"><span class="currency">USD</span>22,500</p>
+      <div class="t-mxn">≈ MXN $383,000 · al tipo de cambio actual</div>
+      <ul class="t-bullets">
+        <li>Todo lo del tier Núcleo</li>
+        <li>Reloj pausable + freeze code + SLA Ghosting Index</li>
+        <li>Degradación de probabilidad y densidad de contacto</li>
+        <li>Motor de comisiones Step-Down multianual + Nivel 1/2/3</li>
+        <li>Bloqueo Fiscal Pay-When-Paid (con sistema contable)</li>
+        <li>Generación documental autónoma con agentes Claude</li>
+        <li>Integración MS Teams (alertas + comandos slash)</li>
+        <li>Integración Jaak KYC vía REST API</li>
+        <li>Audit trail forense con razón del cambio</li>
+        <li>Dashboards directivos + Looker Studio embebido</li>
+        <li>UAT + plan de evolución a 3 meses</li>
+      </ul>
+      <div class="t-foot">Cubre los 23 requerimientos del RFI. Es la opción que ancla el alcance original y entrega la arquitectura completa de Pipeline de Valor Auditado.</div>
+    </div>
+
+    <div class="tier">
+      <div class="t-name">Hardened</div>
+      <div class="t-tag">Completo + soporte · 8 sem + 3 meses</div>
+      <p class="t-price"><span class="currency">USD</span>32,000</p>
+      <div class="t-mxn">≈ MXN $544,000 · al tipo de cambio actual</div>
+      <ul class="t-bullets">
+        <li>Todo lo del tier Completo</li>
+        <li>Migración de datos históricos (deals abiertos + cerrados)</li>
+        <li>Pruebas de carga y simulación de SLAs</li>
+        <li>Plan de continuidad y disaster recovery</li>
+        <li>3 meses de retainer post go-live (10 hrs/mes)</li>
+        <li>SLA de respuesta &lt; 24h en horario hábil</li>
+        <li>Capacitación extendida con sesiones grabadas</li>
+      </ul>
+      <div class="t-foot">Para firmas que quieren entrar a operación con un sistema robusto y soporte cercano durante el período crítico de adopción.</div>
+    </div>
+
+  </div>
+
+  <h3>Esquemas de pago</h3>
+
+  <div class="price-line">
+    <div>
+      <div class="what">Núcleo o Completo: 50% al firmar SOW, 50% al go-live</div>
+      <div class="who">Pago en USD vía SPEI a través de Wise / Lightspark · o MXN equivalente con factura</div>
+    </div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">Hardened: 40% al firmar, 40% al go-live, 20% en cuotas mensuales (mes 1, 2, 3)</div>
+      <div class="who">El retainer se prepaga con los últimos 20%</div>
+    </div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">Time & Materials (alternativa)</div>
+      <div class="who">Si prefieren no fijar precio, tarifa de USD $105/hora con cap acordado por fase</div>
+    </div>
+    <div class="amt">USD 105/h</div>
+  </div>
+
+  <h3>Retainer mensual post go-live (opcional, si toman Núcleo o Completo)</h3>
+
+  <div class="price-line">
+    <div>
+      <div class="what">5 horas mensuales · ajustes menores y monitoreo</div>
+    </div>
+    <div class="amt">USD 600 / mes</div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">10 horas mensuales · evolución activa y nuevos requerimientos</div>
+    </div>
+    <div class="amt">USD 1,200 / mes</div>
+  </div>
+  <div class="price-line">
+    <div>
+      <div class="what">Licencias y herramientas (passthrough)</div>
+      <div class="who">Notion Business · n8n self-hosted o cloud · API Claude · 100–250 USD/mes según volumen</div>
+    </div>
+    <div class="amt">~USD 200/mes</div>
+  </div>
+
+  <div class="callout">
+    <strong>Contingencia:</strong> los tres tiers incluyen un buffer del 10% en horas para alcance no previsto durante Discovery. Cambios fuera del SOW se cotizan por separado a la tarifa T&M.
+  </div>
+
+  <h2><span class="num">06</span>Benchmarks de mercado</h2>
+
+  <p>Estos rangos vienen de directorios públicos y blog posts de consultores reconocidos. La idea no es justificar el precio, sino dar contexto comparativo para que la conversación sobre alcance se ancle en datos.</p>
+
+  <table>
+    <thead>
+      <tr><th>Categoría</th><th>Rate por hora</th><th>Proyecto típico</th><th>Fuente</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Notion senior consultancy</td>
+        <td>USD 100–200</td>
+        <td>USD 15k–25k+ (custom + integraciones)</td>
+        <td class="src"><a href="https://notionmastery.com/guide-to-hiring-notion-consultants/">Notion Mastery</a> · <a href="https://cjwray.com/notion-consultant-pricing/">CJ Wray</a></td>
+      </tr>
+      <tr>
+        <td>Notion business OS build (6–12 sem)</td>
+        <td>—</td>
+        <td>USD 6k–12k</td>
+        <td class="src"><a href="https://cjwray.com/notion-consultant-pricing/">CJ Wray</a></td>
+      </tr>
+      <tr>
+        <td>n8n freelance senior</td>
+        <td>USD 50–150</td>
+        <td>varía por workflow</td>
+        <td class="src"><a href="https://www.upwork.com/hire/n8n-experts/">Upwork</a> · <a href="https://www.toptal.com/developers/n8n">Toptal</a></td>
+      </tr>
+      <tr>
+        <td>AI implementation senior</td>
+        <td>USD 150–300 (mid) · USD 300–500 (senior)</td>
+        <td>USD 10k–50k</td>
+        <td class="src"><a href="https://www.orientsoftware.com/blog/ai-consultant-hourly-rate/">Orient Software</a> · <a href="https://stack.expert/blog/ai-consultant-salary-pricing-guide-for-2025">Stack Expert 2026</a></td>
+      </tr>
+      <tr>
+        <td>CRM custom (rango total mercado)</td>
+        <td>—</td>
+        <td>USD 30k–250k+</td>
+        <td class="src"><a href="https://www.spaceotechnologies.com/blog/custom-crm-development-cost/">SpaceO Tech</a></td>
+      </tr>
+      <tr>
+        <td>Software custom (Clutch, promedio)</td>
+        <td>USD 100–149</td>
+        <td>USD 132k promedio</td>
+        <td class="src"><a href="https://clutch.co/developers/pricing">Clutch.co</a></td>
+      </tr>
+      <tr>
+        <td>Senior tech consultant México</td>
+        <td>USD 50–130</td>
+        <td>—</td>
+        <td class="src"><a href="https://www.curotec.com/insights/latam-developer-hourly-rates-in-2025/">Curotec</a> · <a href="https://www.index.dev/blog/latam-developer-hourly-rates">Index.dev</a></td>
+      </tr>
+      <tr>
+        <td>Retainer mensual AI consultant</td>
+        <td>—</td>
+        <td>USD 2k–10k/mes</td>
+        <td class="src"><a href="https://stack.expert/blog/ai-consultant-salary-pricing-guide-for-2025">Stack Expert 2026</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="src">Fuentes consultadas en abril 2026. Los rangos varían por geografía, seniority y profundidad del scope. NotionOps se ubica en el cuartil bajo–medio del mercado norteamericano y arriba del promedio LATAM por la combinación de stack diferenciado (Notion + n8n + AI) y vertical knowledge en mercados de carbono.</p>
+
+  <h2><span class="num">07</span>Plan de implementación</h2>
+
+  <div class="timeline">
+    <div class="phase">
+      <div>
+        <div class="p-num">01</div>
+        <div class="week">Semana 1</div>
+      </div>
+      <div>
+        <h4>Discovery y mapeo de procesos</h4>
+        <ul>
+          <li>Sesiones de trabajo con Dirección, Operaciones y BD para validar reglas exactas (SLAs, niveles de comisión, criterios de freeze code)</li>
+          <li>Inventario de plantillas legales (Anexo A, BANT, NDA, SOW)</li>
+          <li>Mapeo de integraciones: Jaak, Teams, sistema contable, calendario</li>
+          <li><strong>Entregable:</strong> documento de especificación funcional firmado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div>
+        <div class="p-num">02</div>
+        <div class="week">Semanas 2–4</div>
+      </div>
+      <div>
+        <h4>MVP — núcleo del pipeline</h4>
+        <ul>
+          <li>Schema completo en Notion (DBs, vistas, relaciones, permisos)</li>
+          <li>Embudos Sales y Delivery operativos con gates documentales</li>
+          <li>Killswitch 180d, alertas 45/90, afirmativa ficta 72h</li>
+          <li>Audit trail forense activo</li>
+          <li>Dashboards básicos por brand y consolidado</li>
+          <li><strong>Entregable:</strong> demo funcional con datos de prueba</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div>
+        <div class="p-num">03</div>
+        <div class="week">Semanas 5–7 (solo Completo / Hardened)</div>
+      </div>
+      <div>
+        <h4>Capa de governance avanzada</h4>
+        <ul>
+          <li>Reloj pausable, freeze code, degradación de probabilidad, SLA Ghosting</li>
+          <li>Motor de comisiones: Nivel 1/2/3 + step-down multianual</li>
+          <li>Bloqueo fiscal Pay-When-Paid</li>
+          <li>Generación documental con agentes Claude</li>
+          <li>Integraciones: Teams (notificaciones + comandos), Jaak (KYC)</li>
+          <li><strong>Entregable:</strong> sistema completo en staging con UAT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div>
+        <div class="p-num">04</div>
+        <div class="week">Semana 5 u 8 según tier</div>
+      </div>
+      <div>
+        <h4>Hardening, capacitación y handoff</h4>
+        <ul>
+          <li>Migración de datos reales (si aplica)</li>
+          <li>Capacitación a Dirección, Operaciones y BDs</li>
+          <li>Documentación operativa y videos Loom para autoservicio</li>
+          <li>Plan de evolución a 3 meses</li>
+          <li><strong>Entregable:</strong> sistema en producción</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="num">08</span>Próximo paso</h2>
+
+  <p>Una llamada de 30 minutos esta semana para alinear contexto que no quedó cubierto en el RFI: tamaño del equipo BD, volumen actual de deals, criticidad de la fecha de go-live, restricciones de stack del lado de TI/Compliance, y elección de tier.</p>
+
+  <p>Si el alcance hace sentido, firmamos un SOW corto y arrancamos Discovery la semana siguiente.</p>
+
+  <footer>
+    <p>NotionOps · Pedro Rojas Campuzano · Ciudad de México</p>
+    <p>pedro.rojas.campuzano@gmail.com · +52 55 9186 1118 · linkedin.com/in/pedro-rojas-campuzano</p>
+    <p>Esta propuesta es válida por 30 días desde la fecha de emisión. Tipos de cambio MXN/USD calculados a 17.0 pesos/dólar; los pagos se ajustan al tipo de cambio del día.</p>
+  </footer>
+</div>
+</body>
+</html>
